@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dog or Cat Classifier</title>
+    <link rel="stylesheet" href="/static/universal.css" />
+  </head>
+  <body>
+    <h1>KNN Cat/Dog Classifier</h1>
+    <div id="block">
+      <form method="POST" enctype="multipart/form-data" id="block1">
+        <label for="uploadFile">
+          <img
+            id="Image"
+            src="../static/icon.png"
+            alt=""
+            srcset=""
+            width="50px"
+          />
+        </label>
+        <input type="file" name="file" required id="uploadFile" />
+        <input type="submit" value="Predict" />
+      </form>
+
+      <div id="block2">
+        <h2>Prediction: {{ prediction }}</h2>
+      </div>
+    </div>
+    <script>
+      document.getElementById("uploadFile").onchange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        const img = document.getElementById("Image");
+
+        reader.onloadend = () => {
+          img.src = reader.result;
+          img.style.width = "200px";
+          img.style.height = "150px";
+        };
+
+        if (file) {
+          reader.readAsDataURL(file);
+        } else {
+          img.src = "../static/icon.png";
+        }
+      };
+    </script>
+  </body>
+</html>
